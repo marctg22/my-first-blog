@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth import views
+from perfiles.views import SignUpView, BienvenidaView, SignInView, SignOutView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -24,4 +25,9 @@ urlpatterns = [
     url(r'^accounts/logout/$', views.logout, name='logout', kwargs={'next_page': '/'}),
 
     url(r'',include('blog.urls')),
+
+    url(r'^$', BienvenidaView.as_view(), name='bienvenida'),
+    url(r'^registrate/$', SignUpView.as_view(), name='sign_up'),
+    url(r'^inicia-sesion/$', SignInView.as_view(), name='sign_in'),
+    url(r'^cerrar-sesion/$', SignOutView.as_view(), name='sign_out'),
 ]
